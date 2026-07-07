@@ -170,7 +170,7 @@ a { color: var(--accent); }
 
 .hero__tag {
   font-family: var(--font-pix);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--pink);
   letter-spacing: 2px;
   margin: 0 0 26px;
@@ -191,10 +191,18 @@ a { color: var(--accent); }
 
 .hero__sub {
   font-family: var(--font-pix);
-  font-size: 14px;
+  font-size: 18px;
   color: var(--accent);
   margin: 34px 0 18px;
+  /* 三欄格線讓中間的 Vue 對齊容器中心(即 START 的中心) */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
 }
+.hero__sub-l { text-align: right; }
+.hero__sub-r { text-align: left; }
+.hero__sub-c { text-align: center; }
 
 .hero__desc {
   font-size: 26px;
@@ -326,7 +334,7 @@ a { color: var(--accent); }
   box-shadow: var(--shadow-sm);
   transition: border-color .05s steps(2), background .05s steps(2);
 }
-.card__links a:last-child { font-size: 20px; }   /* GitHub 連結 */
+.card__links a:last-child { font-size: 22px; }   /* GitHub 連結 */
 .card__links a:hover { border-color: var(--accent); }   /* hover 換外框顏色 */
 .card__links a:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
 
@@ -432,6 +440,10 @@ a { color: var(--accent); }
   color: var(--accent);
 }
 .facts b { font-weight: normal; }
+/* 工作機會:框架名稱放大 2px,其他中文不變 */
+.facts .c-react,
+.facts .c-vue,
+.facts .c-angular { font-size: 24px; }
 .c-react   { color: var(--react); }
 .c-vue     { color: var(--vue); }
 .c-angular { color: var(--angular); }
