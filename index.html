@@ -246,12 +246,14 @@
   <!-- ===== 測驗區 ===== -->
   <section id="quiz" class="section section--quiz">
     <h2 class="section__title">// 小測驗</h2>
-    <p class="section__lead">回答 5 題,了解你的使用習慣。(功能尚未實作)</p>
+    <p class="section__lead">回答 5 題,了解你的使用習慣。一次一題,選好後按 ► 前進。</p>
 
-    <form class="quiz">
+    <form class="quiz" id="quizForm">
+      <p class="quiz__progress"><span id="quizStep">1</span> / <span id="quizTotal">5</span></p>
+
       <!-- Q1 -->
       <fieldset class="q">
-        <legend class="q__title"><span class="q__no">Q1</span> 你比較喜歡哪種寫法?</legend>
+        <legend class="q__title"><span class="q__no">Q1</span> 你比較喜歡哪種寫法<span class="q__q">?</span></legend>
         <label class="opt"><input type="radio" name="q1" /><span>把 HTML、CSS、JS 都寫在同一個檔案</span></label>
         <label class="opt"><input type="radio" name="q1" /><span>用 JSX,把畫面和邏輯寫在一起</span></label>
         <label class="opt"><input type="radio" name="q1" /><span>照著框架的規範,結構分得很清楚</span></label>
@@ -259,7 +261,7 @@
 
       <!-- Q2 -->
       <fieldset class="q">
-        <legend class="q__title"><span class="q__no">Q2</span> 你的專案規模大概是?</legend>
+        <legend class="q__title"><span class="q__no">Q2</span> 你的專案規模大概是<span class="q__q">?</span></legend>
         <label class="opt"><input type="radio" name="q2" /><span>個人 / 小型專案,快速做出來</span></label>
         <label class="opt"><input type="radio" name="q2" /><span>中大型,想要彈性自由組合</span></label>
         <label class="opt"><input type="radio" name="q2" /><span>企業級,團隊多、要規範一致</span></label>
@@ -267,7 +269,7 @@
 
       <!-- Q3 -->
       <fieldset class="q">
-        <legend class="q__title"><span class="q__no">Q3</span> 對 TypeScript 的態度?</legend>
+        <legend class="q__title"><span class="q__no">Q3</span> 對 <span class="q__ts">TypeScript</span> 的態度<span class="q__q">?</span></legend>
         <label class="opt"><input type="radio" name="q3" /><span>還好,可有可無</span></label>
         <label class="opt"><input type="radio" name="q3" /><span>喜歡,但想自己決定要用多少</span></label>
         <label class="opt"><input type="radio" name="q3" /><span>愛,型別越嚴格越安心</span></label>
@@ -275,7 +277,7 @@
 
       <!-- Q4 -->
       <fieldset class="q">
-        <legend class="q__title"><span class="q__no">Q4</span> 你希望框架幫你決定多少?</legend>
+        <legend class="q__title"><span class="q__no">Q4</span> 你希望框架幫你決定多少<span class="q__q">?</span></legend>
         <label class="opt"><input type="radio" name="q4" /><span>大部分我自己來,框架別管太多</span></label>
         <label class="opt"><input type="radio" name="q4" /><span>核心給我,周邊我自己挑</span></label>
         <label class="opt"><input type="radio" name="q4" /><span>全包最好,路由表單都內建</span></label>
@@ -283,13 +285,16 @@
 
       <!-- Q5 -->
       <fieldset class="q">
-        <legend class="q__title"><span class="q__no">Q5</span> 找工作 / 生態你最在意?</legend>
+        <legend class="q__title"><span class="q__no">Q5</span> 找工作<span class="q__q">/</span>生態你最在意<span class="q__q">?</span></legend>
         <label class="opt"><input type="radio" name="q5" /><span>職缺多、社群大最重要</span></label>
         <label class="opt"><input type="radio" name="q5" /><span>好上手、文件親切最重要</span></label>
         <label class="opt"><input type="radio" name="q5" /><span>穩定、長期維護與規範最重要</span></label>
       </fieldset>
 
-      <button type="button" class="btn btn--primary quiz__submit">送出測驗 ►</button>
+      <div class="quiz__nav">
+        <button type="button" class="btn quiz__prev" disabled>◄ 上一題</button>
+        <button type="button" class="btn btn--primary quiz__next" disabled>下一題 ►</button>
+      </div>
     </form>
 
     <!-- 結果區(佔位,功能未實作) -->
@@ -305,5 +310,7 @@
     <p>◆ MADE WITH HTML / CSS ◆</p>
     <p class="footer__small">Front-end Quest · pixel edition</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
