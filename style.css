@@ -490,28 +490,12 @@ a { color: var(--accent); }
   gap: 26px;
 }
 
-/* 進度 */
-.quiz__progress {
-  font-family: var(--font-pix);
-  font-size: 16px;
-  color: var(--accent);
-  text-align: center;
-  margin: 0;
-}
-
-/* 逐題顯示:預設隱藏,只顯示 is-active */
 .q {
-  display: none;
   background: var(--bg-2);
   border: 3px solid #000;
   box-shadow: var(--shadow);
   padding: 22px 24px 24px;
   margin: 0;
-}
-.q.is-active { display: block; animation: qin .18s steps(3, end); }
-@keyframes qin {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: none; }
 }
 .q__title {
   font-family: var(--font-pix);
@@ -566,29 +550,10 @@ a { color: var(--accent); }
   box-shadow: inset 0 0 0 3px var(--bg);
 }
 
-/* 導覽列(上一題 / 下一題 / 送出) */
-.quiz__nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  margin-top: 6px;
+.quiz__submit {
+  justify-self: center;
+  margin-top: 12px;
 }
-.quiz__prev {
-  background: var(--bg-2);
-  color: var(--ink);
-}
-.quiz__prev:hover { background: #262247; }
-
-/* 「下一題 / 送出」的寬度由 JS 量測「上一題」後套用,兩顆一致 */
-.quiz__next { text-align: center; }
-
-/* 未作答時,箭頭 / 送出停用 */
-.btn[disabled] {
-  opacity: .4;
-  cursor: not-allowed;
-}
-.btn[disabled]:active { transform: none; box-shadow: var(--shadow); }
 
 /* 結果佔位 */
 .result {
