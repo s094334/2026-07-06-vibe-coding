@@ -78,6 +78,7 @@ function showResult(fw, scroll) {
   resultName.href = info[fw].url;                  // 名稱本身連到官方文件
   resultName.className = "result__name c-" + fw;   // 換成框架代表色
   resultDesc.textContent = info[fw].desc;
+  result.style.borderTopColor = "var(--" + fw + ")";   // 頂部線條換成框架代表色
   result.hidden = false;
 
   if (scroll) {
