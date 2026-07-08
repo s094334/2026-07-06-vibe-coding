@@ -668,8 +668,8 @@ a { color: var(--accent); }
   .fw__tag, .scenario__no { justify-self: start; padding: 8px 14px; }
   body { font-size: 22px; }
   .hero__title { text-shadow: 3px 3px 0 var(--angular), 6px 6px 0 var(--react); }
-  /* hero 高度自適應、拿掉左右漂浮裝飾動畫 */
-  .hero { min-height: auto; }
+  /* hero 占滿整頁但最高 860px、上下 padding 80px、拿掉左右漂浮裝飾動畫 */
+  .hero { min-height: min(100vh, 860px); padding-top: 80px; padding-bottom: 80px; }
   .hero__deco { display: none; }
 }
 
