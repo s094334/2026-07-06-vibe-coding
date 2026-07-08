@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="比較 React、Vue、Angular 三大前端框架的差異,並用一個像素風小測驗幫你找出最適合的框架。" />
+  <title>PICK YOUR FRAMEWORK — React / Vue / Angular</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== 星空 / 掃描線背景 ===== -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <!-- 左右像素裝飾(漂浮動畫) -->
+    <div class="hero__deco hero__deco--left" aria-hidden="true">
+      <span class="px px--react">&lt;/&gt;</span>
+      <span class="px px--vue">◆</span>
+      <span class="px px--angular">★</span>
+      <span class="px px--pink">▲</span>
+    </div>
+    <div class="hero__deco hero__deco--right" aria-hidden="true">
+      <span class="px px--vue">{ }</span>
+      <span class="px px--angular">◆</span>
+      <span class="px px--react">●</span>
+      <span class="px px--accent">✦</span>
+    </div>
+
+    <div class="hero__inner">
+      <p class="hero__tag">▲ FRONT-END QUEST ▲</p>
+      <h1 class="hero__title">PICK YOUR<br />FRAMEWORK</h1>
+      <p class="hero__sub">
+        <span class="hero__sub-l">React&nbsp;·</span>
+        <span class="hero__sub-c">Vue</span>
+        <span class="hero__sub-r">·&nbsp;Angular</span>
+      </p>
+      <p class="hero__desc">
+        比較三大前端框架,<br />
+        看看哪一個最適合你 &lt;/&gt;
+      </p>
+      <a class="btn btn--primary" href="#compare">▼ START ▼</a>
+    </div>
+  </header>
+
+  <!-- ===== 比較區 ===== -->
+  <section id="compare" class="section">
+    <h2 class="section__title">// 框架大對決</h2>
+    <p class="section__lead">三個都很強,但個性不一樣。先看看它們的差別。</p>
+
+    <div class="cards">
+      <!-- React -->
+      <article class="card card--react">
+        <div class="card__badge">JSX</div>
+        <h3 class="card__name">React</h3>
+        <p class="card__by">Meta · 2013</p>
+        <ul class="card__stats">
+          <li><span>類型</span><b>函式庫</b></li>
+          <li><span>學習曲線</span><b>★★★☆☆</b></li>
+          <li><span>彈性</span><b>★★★★★</b></li>
+          <li><span>生態</span><b>★★★★★</b></li>
+        </ul>
+        <p class="card__desc">
+          自由度最高,靠 JSX 與元件組合。生態龐大、工作機會多,但要自己選路由 / 狀態管理。
+        </p>
+        <div class="card__links">
+          <a href="https://react.dev/" target="_blank" rel="noopener">官方文件 ↗</a>
+          <a href="https://github.com/facebook/react" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- Vue -->
+      <article class="card card--vue">
+        <div class="card__badge">SFC</div>
+        <h3 class="card__name">Vue</h3>
+        <p class="card__by">Evan You · 2014</p>
+        <ul class="card__stats">
+          <li><span>類型</span><b>框架</b></li>
+          <li><span>學習曲線</span><b>★★☆☆☆</b></li>
+          <li><span>彈性</span><b>★★★★☆</b></li>
+          <li><span>生態</span><b>★★★★☆</b></li>
+        </ul>
+        <p class="card__desc">
+          最好上手,單檔元件 (SFC) 把 HTML / CSS / JS 放一起。漸進式導入,適合中小型專案。
+        </p>
+        <div class="card__links">
+          <a href="https://vuejs.org/" target="_blank" rel="noopener">官方文件 ↗</a>
+          <a href="https://github.com/vuejs/core" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- Angular -->
+      <article class="card card--angular">
+        <div class="card__badge">TS</div>
+        <h3 class="card__name">Angular</h3>
+        <p class="card__by">Google · 2016</p>
+        <ul class="card__stats">
+          <li><span>類型</span><b>全套框架</b></li>
+          <li><span>學習曲線</span><b>★★★★★</b></li>
+          <li><span>彈性</span><b>★★★☆☆</b></li>
+          <li><span>生態</span><b>★★★★☆</b></li>
+        </ul>
+        <p class="card__desc">
+          內建路由、表單、HTTP、DI,一整套規範。TypeScript 優先,適合大型團隊與企業級應用。
+        </p>
+        <div class="card__links">
+          <a href="https://angular.dev/" target="_blank" rel="noopener">官方文件 ↗</a>
+          <a href="https://github.com/angular/angular" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===== 主題比較 ===== -->
+    <div class="topics">
+
+      <!-- 01 學習難易度 -->
+      <article class="topic">
+        <h3 class="topic__title"><span class="topic__no">01</span><span class="topic__label">學習難易度</span></h3>
+
+        <div class="fw fw--vue">
+          <div class="fw__tag">Vue</div>
+          <div class="fw__body">
+            <p class="fw__lead">最貼近原生語法,入門最簡單</p>
+            <p>語法與傳統 HTML / CSS / JS 很相近,不必先學 TypeScript 或 JSX。在檔案裡加上 <code>&lt;template&gt;</code> 就能寫熟悉的 HTML,再加 <code>&lt;script&gt;</code> 或 <code>&lt;style&gt;</code> 就能直接寫 JS 或 CSS,新手能在短時間內學會基本操作。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--react">
+          <div class="fw__tag">React</div>
+          <div class="fw__body">
+            <p class="fw__lead">難度中等,使用彈性較高</p>
+            <p>最特別的是 JSX──把 JavaScript 和 HTML 混寫的語法;而且一個 component 就是一個 function,這兩點讓新手比較不習慣。碰到 Hooks、Context API 等高階特性時更有挑戰。不過學會 React 後再學 Vue 很快,反過來則較難。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--angular">
+          <div class="fw__tag">Angular</div>
+          <div class="fw__body">
+            <p class="fw__lead">學習曲線最陡,功能最強大</p>
+            <p>不只是 UI 庫,而是「全家桶」框架,內建路由、依賴注入、狀態管理,能直接搭出完整前端應用。也因為太完整,得花不少時間理解細節,加上預設用 TypeScript,只熟 JS 的人要再多花時間學。</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 工作機會 -->
+      <article class="topic">
+        <h3 class="topic__title"><span class="topic__no">02</span><span class="topic__label">工作機會</span></h3>
+        <ul class="facts">
+          <li>台灣 <b class="c-react">React</b> 和 <b class="c-vue">Vue</b> 的工作機會其實差不多</li>
+          <li>國外或外商公司基本上以 <b class="c-react">React</b> 為主</li>
+          <li><b>大陸公司</b>則偏好 <b class="c-vue">Vue</b>。</li>
+          <li><b class="c-angular">Angular</b> 在台灣常見於金融科技、電信、電商等大型企業或公家機關專案。</li>
+        </ul>
+      </article>
+
+      <!-- 03 教學資源 -->
+      <article class="topic">
+        <h3 class="topic__title"><span class="topic__no">03</span><span class="topic__label">教學資源豐富度</span></h3>
+
+        <div class="fw fw--vue">
+          <div class="fw__tag">Vue</div>
+          <div class="fw__body">
+            <p class="fw__lead">中文資源豐富,最適合入門</p>
+            <p>社群規模比 React、Angular 小一些,但成長很快。官方有中文文件,大陸開發者也產出大量教學影片,對英文沒把握的人學起來較輕鬆。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--react">
+          <div class="fw__tag">React</div>
+          <div class="fw__body">
+            <p class="fw__lead">資源最豐富完整</p>
+            <p>業界使用率最高、使用者基數大,教學、技術文章與解決方案最多。由 Meta 推出加上龐大社群,遇到 Bug 幾乎都找得到範例,還有很多從 0 到 1 的完整專案教學,只是內容以英文為主。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--angular">
+          <div class="fw__tag">Angular</div>
+          <div class="fw__body">
+            <p class="fw__lead">官方支援完備,適合大型專案</p>
+            <p>不少大型企業專案用 Angular,官方文件相當詳細。因學習門檻高、職缺較少,新手轉職者較少先學,但只要願意花時間,網路上仍能找到優質教學。</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 生態系統 -->
+      <article class="topic">
+        <h3 class="topic__title"><span class="topic__no">04</span><span class="topic__label">生態系統</span></h3>
+
+        <div class="fw fw--vue">
+          <div class="fw__tag">Vue</div>
+          <div class="fw__body">
+            <p class="fw__lead">輕巧直覺,成長快速</p>
+            <p>生態相對精簡,因推出較晚、社群較小。但主打輕巧與漸進式架構,可小步快跑融入既有專案,加上清晰中文文件,門檻低。第三方套件雖不及 React,但常用工具已相當足夠。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--react">
+          <div class="fw__tag">React</div>
+          <div class="fw__body">
+            <p class="fw__lead">最龐大、最活躍</p>
+            <p>官方定位為 UI 函式庫,但社群提供了 React Router、Redux、Next.js 等各式第三方工具,可自由搭配。在 GitHub、Stack Overflow 關注度高,問題通常能迅速找到解法。</p>
+          </div>
+        </div>
+
+        <div class="fw fw--angular">
+          <div class="fw__tag">Angular</div>
+          <div class="fw__body">
+            <p class="fw__lead">官方自帶完整解決方案</p>
+            <p>涵蓋路由、依賴注入、模組化結構,一開始就有穩定嚴謹的開發模式,對需要長期維護、流程嚴格的團隊很友好。第三方套件雖不多,但官方功能已能自給自足。</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 新手該先學哪個 -->
+      <article class="topic">
+        <h3 class="topic__title"><span class="topic__no">05</span><span class="topic__label">新手該先學哪個?</span></h3>
+
+        <div class="scenario">
+          <div class="scenario__no"><span class="scenario__label">情境</span>1</div>
+          <div class="scenario__body">
+            <p class="fw__lead fw__lead--sm">已經有心儀的公司</p>
+            <p>不管對方用 React、Vue 還是 Angular,他們用什麼就學什麼。針對性準備能省下摸索時間,也提高面試被看見的機會。</p>
+          </div>
+        </div>
+
+        <div class="scenario">
+          <div class="scenario__no"><span class="scenario__label">情境</span>2</div>
+          <div class="scenario__body">
+            <p class="fw__lead fw__lead--sm">已熟悉 <span class="tech">JavaScript</span> → 推薦 <b class="c-react tech">React</b></p>
+            <p>若你有程式基礎、對 JS 熟練、想透過框架更深入理解 JS,且時間較充裕,推薦先學 React。它需要和 JS 打很多交道,能更直觀體會 JS 運作,國外的專案範例與參考程式碼也非常好找。</p>
+          </div>
+        </div>
+
+        <div class="scenario">
+          <div class="scenario__no"><span class="scenario__label">情境</span>3</div>
+          <div class="scenario__body">
+            <p class="fw__lead fw__lead--sm">第一次接觸程式、想短時間找工作 → 推薦 <b class="c-vue tech">Vue</b></p>
+            <p>若前端是你第一次寫程式、對 JS 還不熟、又有時間壓力,推薦先學 Vue。上手簡單、開發體驗好,把專案跑起來、寫個小功能的速度快,能給初學者較大的成就感。</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="section__scrollhint">▼ 往下玩測驗 ▼</p>
+  </section>
+
+  <!-- ===== 測驗區 ===== -->
+  <section id="quiz" class="section section--quiz">
+    <h2 class="section__title">// 小測驗</h2>
+    <p class="section__lead">看完還是不確定要學哪個框架嗎?五個問題讓你有概念!</p>
+
+    <form class="quiz">
+      <!-- Q1 -->
+      <fieldset class="q">
+        <legend class="q__title"><span class="q__no">Q1</span> 你比較喜歡哪種寫法<span class="q__q">?</span></legend>
+        <label class="opt"><input type="radio" name="q1" /><span>把 HTML、CSS、JS 都寫在同一個檔案</span></label>
+        <label class="opt"><input type="radio" name="q1" /><span>用 JSX,把畫面和邏輯寫在一起</span></label>
+        <label class="opt"><input type="radio" name="q1" /><span>照著框架的規範,結構分得很清楚</span></label>
+      </fieldset>
+
+      <!-- Q2 -->
+      <fieldset class="q">
+        <legend class="q__title"><span class="q__no">Q2</span> 你的專案規模大概是<span class="q__q">?</span></legend>
+        <label class="opt"><input type="radio" name="q2" /><span>個人 / 小型專案,快速做出來</span></label>
+        <label class="opt"><input type="radio" name="q2" /><span>中大型,想要彈性自由組合</span></label>
+        <label class="opt"><input type="radio" name="q2" /><span>企業級,團隊多、要規範一致</span></label>
+      </fieldset>
+
+      <!-- Q3 -->
+      <fieldset class="q">
+        <legend class="q__title"><span class="q__no">Q3</span> 對 <span class="q__ts">TypeScript</span> 的態度<span class="q__q">?</span></legend>
+        <label class="opt"><input type="radio" name="q3" /><span>還好,可有可無</span></label>
+        <label class="opt"><input type="radio" name="q3" /><span>喜歡,但想自己決定要用多少</span></label>
+        <label class="opt"><input type="radio" name="q3" /><span>愛,型別越嚴格越安心</span></label>
+      </fieldset>
+
+      <!-- Q4 -->
+      <fieldset class="q">
+        <legend class="q__title"><span class="q__no">Q4</span> 你希望框架幫你決定多少<span class="q__q">?</span></legend>
+        <label class="opt"><input type="radio" name="q4" /><span>大部分我自己來,框架別管太多</span></label>
+        <label class="opt"><input type="radio" name="q4" /><span>核心給我,周邊我自己挑</span></label>
+        <label class="opt"><input type="radio" name="q4" /><span>全包最好,路由表單都內建</span></label>
+      </fieldset>
+
+      <!-- Q5 -->
+      <fieldset class="q">
+        <legend class="q__title"><span class="q__no">Q5</span> 找工作<span class="q__q">/</span>生態你最在意<span class="q__q">?</span></legend>
+        <label class="opt"><input type="radio" name="q5" /><span>職缺多、社群大最重要</span></label>
+        <label class="opt"><input type="radio" name="q5" /><span>好上手、文件親切最重要</span></label>
+        <label class="opt"><input type="radio" name="q5" /><span>穩定、長期維護與規範最重要</span></label>
+      </fieldset>
+
+      <button type="button" class="btn btn--primary quiz__submit">送出測驗 ►</button>
+    </form>
+
+    <!-- 結果區(佔位,功能未實作) -->
+    <div class="result" hidden>
+      <h3 class="result__title">你適合的是…</h3>
+      <p class="result__name">— — —</p>
+      <p class="result__desc">結果會顯示在這裡。</p>
+    </div>
+  </section>
+
+  <!-- ===== 頁尾 ===== -->
+  <footer class="footer">
+    <p>◆ MADE WITH HTML / CSS ◆</p>
+    <p class="footer__small">Front-end Quest · pixel edition</p>
+  </footer>
+</body>
+</html>
