@@ -618,11 +618,19 @@ a { color: var(--accent); }
   margin: 0 0 16px;
 }
 .result__name {
+  display: inline-block;
   font-family: var(--font-pix);
   font-size: 26px;
   color: var(--accent);
   margin: 0 0 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
+.result__name:hover { opacity: .8; }
+/* 換成框架代表色(兩個 class 提高特異度,才不會被上面的 accent 蓋掉) */
+.result__name.c-react   { color: var(--react); }
+.result__name.c-vue     { color: var(--vue); }
+.result__name.c-angular { color: var(--angular); }
 .result__desc {
   font-size: 24px;
   color: var(--ink);

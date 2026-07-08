@@ -259,41 +259,41 @@
       <!-- Q1 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q1</span> 你比較喜歡哪種寫法<span class="q__q">?</span></legend>
-        <label class="opt"><input type="radio" name="q1" /><span>把 HTML、CSS、JS 都寫在同一個檔案</span></label>
-        <label class="opt"><input type="radio" name="q1" /><span>用 JSX,把畫面和邏輯寫在一起</span></label>
-        <label class="opt"><input type="radio" name="q1" /><span>照著框架的規範,結構分得很清楚</span></label>
+        <label class="opt"><input type="radio" name="q1" data-fw="vue" /><span>把 HTML、CSS、JS 都寫在同一個檔案</span></label>
+        <label class="opt"><input type="radio" name="q1" data-fw="react" /><span>用 JSX,把畫面和邏輯寫在一起</span></label>
+        <label class="opt"><input type="radio" name="q1" data-fw="angular" /><span>照著框架的規範,結構分得很清楚</span></label>
       </fieldset>
 
       <!-- Q2 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q2</span> 你的專案規模大概是<span class="q__q">?</span></legend>
-        <label class="opt"><input type="radio" name="q2" /><span>個人 / 小型專案,快速做出來</span></label>
-        <label class="opt"><input type="radio" name="q2" /><span>中大型,想要彈性自由組合</span></label>
-        <label class="opt"><input type="radio" name="q2" /><span>企業級,團隊多、要規範一致</span></label>
+        <label class="opt"><input type="radio" name="q2" data-fw="vue" /><span>個人 / 小型專案,快速做出來</span></label>
+        <label class="opt"><input type="radio" name="q2" data-fw="react" /><span>中大型,想要彈性自由組合</span></label>
+        <label class="opt"><input type="radio" name="q2" data-fw="angular" /><span>企業級,團隊多、要規範一致</span></label>
       </fieldset>
 
       <!-- Q3 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q3</span> 對 <span class="q__ts">TypeScript</span> 的態度<span class="q__q">?</span></legend>
-        <label class="opt"><input type="radio" name="q3" /><span>還好,可有可無</span></label>
-        <label class="opt"><input type="radio" name="q3" /><span>喜歡,但想自己決定要用多少</span></label>
-        <label class="opt"><input type="radio" name="q3" /><span>愛,型別越嚴格越安心</span></label>
+        <label class="opt"><input type="radio" name="q3" data-fw="vue" /><span>還好,可有可無</span></label>
+        <label class="opt"><input type="radio" name="q3" data-fw="react" /><span>喜歡,但想自己決定要用多少</span></label>
+        <label class="opt"><input type="radio" name="q3" data-fw="angular" /><span>愛,型別越嚴格越安心</span></label>
       </fieldset>
 
       <!-- Q4 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q4</span> 你希望框架幫你決定多少<span class="q__q">?</span></legend>
-        <label class="opt"><input type="radio" name="q4" /><span>大部分我自己來,框架別管太多</span></label>
-        <label class="opt"><input type="radio" name="q4" /><span>核心給我,周邊我自己挑</span></label>
-        <label class="opt"><input type="radio" name="q4" /><span>全包最好,路由表單都內建</span></label>
+        <label class="opt"><input type="radio" name="q4" data-fw="react" /><span>大部分我自己來,框架別管太多</span></label>
+        <label class="opt"><input type="radio" name="q4" data-fw="vue" /><span>核心給我,周邊我自己挑</span></label>
+        <label class="opt"><input type="radio" name="q4" data-fw="angular" /><span>全包最好,路由表單都內建</span></label>
       </fieldset>
 
       <!-- Q5 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q5</span> 找工作<span class="q__q">/</span>生態你最在意<span class="q__q">?</span></legend>
-        <label class="opt"><input type="radio" name="q5" /><span>職缺多、社群大最重要</span></label>
-        <label class="opt"><input type="radio" name="q5" /><span>好上手、文件親切最重要</span></label>
-        <label class="opt"><input type="radio" name="q5" /><span>穩定、長期維護與規範最重要</span></label>
+        <label class="opt"><input type="radio" name="q5" data-fw="react" /><span>職缺多、社群大最重要</span></label>
+        <label class="opt"><input type="radio" name="q5" data-fw="vue" /><span>好上手、文件親切最重要</span></label>
+        <label class="opt"><input type="radio" name="q5" data-fw="angular" /><span>穩定、長期維護與規範最重要</span></label>
       </fieldset>
 
       <div class="quiz__nav">
@@ -302,10 +302,10 @@
       </div>
     </form>
 
-    <!-- 結果區(佔位,功能未實作) -->
+    <!-- 結果區(送出後由 JS 填入) -->
     <div class="result" hidden>
       <h3 class="result__title">你適合的是…</h3>
-      <p class="result__name">— — —</p>
+      <a class="result__name" href="#" target="_blank" rel="noopener">— — —</a>
       <p class="result__desc">結果會顯示在這裡。</p>
     </div>
   </section>
