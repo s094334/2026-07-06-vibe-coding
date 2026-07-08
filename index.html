@@ -253,7 +253,9 @@
     <h2 class="section__title">// 小測驗</h2>
     <p class="section__lead">看完還是不確定要學哪個框架嗎?五個問題讓你有概念!</p>
 
-    <form class="quiz">
+    <form class="quiz" id="quizForm">
+      <p class="quiz__progress"><span id="quizStep">1</span> / <span id="quizTotal">5</span></p>
+
       <!-- Q1 -->
       <fieldset class="q">
         <legend class="q__title"><span class="q__no">Q1</span> 你比較喜歡哪種寫法<span class="q__q">?</span></legend>
@@ -294,7 +296,10 @@
         <label class="opt"><input type="radio" name="q5" /><span>穩定、長期維護與規範最重要</span></label>
       </fieldset>
 
-      <button type="button" class="btn btn--primary quiz__submit">送出測驗 ►</button>
+      <div class="quiz__nav">
+        <button type="button" class="btn quiz__prev" disabled>上一題</button>
+        <button type="button" class="btn btn--primary quiz__next" disabled>下一題</button>
+      </div>
     </form>
 
     <!-- 結果區(佔位,功能未實作) -->
@@ -310,5 +315,7 @@
     <p>◆ MADE WITH HTML / CSS ◆</p>
     <p class="footer__small">Front-end Quest · pixel edition</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
