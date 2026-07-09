@@ -1,0 +1,734 @@
+/* =========================================================
+   PICK YOUR FRAMEWORK — pixel style
+   純畫面 (HTML / CSS),互動與 cookie 尚未實作
+   ========================================================= */
+
+:root {
+  --bg:        #14122b;   /* 深夜藍紫 */
+  --bg-2:      #2a2550;   /* 卡片/面板底色,提亮以與背景拉開對比 */
+  --ink:       #f4f4f8;   /* 主要文字 */
+  --ink-dim:   #a9a4d0;   /* 次要文字 */
+  --line:      #3a356b;   /* 邊框 / 分隔 */
+
+  --react:     #61dafb;
+  --vue:       #42b883;
+  --angular:   #dd0031;
+  --accent:    #ffd23f;   /* 像素黃 */
+  --pink:      #ff5d8f;
+
+  --shadow:    6px 6px 0 #000;
+  --shadow-sm: 4px 4px 0 #000;
+
+  --font-pix:  'Press Start 2P', 'cjk-pixel', system-ui, sans-serif;
+  --font-body: 'VT323', 'cjk-body', 'Courier New', monospace;
+}
+
+/* 讓中文與英文能各自控制字級:
+   VT323 / Press Start 2P 只含拉丁字元,中文一律落到下列 CJK 字體,
+   再用 size-adjust 針對中文(非拉丁)微調大小,英文不受影響。
+   注意:size-adjust 是「比例」縮放,故中文約為 ±2px,並非每個字級都精準 2px。 */
+@font-face {
+  font-family: "cjk-body";           /* 內文中文:縮回原始大小 */
+  src: local("PingFang TC"), local("PingFang SC"), local("Heiti TC"),
+       local("Microsoft JhengHei"), local("Noto Sans TC"), local("Noto Sans CJK TC");
+  unicode-range: U+2E80-2FDF, U+3000-30FF, U+3200-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+  size-adjust: 92%;
+}
+@font-face {
+  font-family: "cjk-pixel";          /* 像素區中文:相對放大 2px */
+  src: local("PingFang TC"), local("PingFang SC"), local("Heiti TC"),
+       local("Microsoft JhengHei"), local("Noto Sans TC"), local("Noto Sans CJK TC");
+  unicode-range: U+2E80-2FDF, U+3000-30FF, U+3200-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+  size-adjust: 115%;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% -10%, #2a2560 0, transparent 45%),
+    radial-gradient(circle at 90% 10%, #3a1f52 0, transparent 40%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 24px;
+  line-height: 1.5;
+  image-rendering: pixelated;
+  overflow-x: hidden;
+}
+
+/* CRT 掃描線覆蓋 */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0,
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+a { color: var(--accent); }
+
+/* 內文段落中的英文字放大 */
+.en { font-size: 24px; }
+
+/* 內文中的官方連結:維持內文色,只加底線 */
+.txt-link { color: inherit; text-decoration: underline; }
+
+/* ---------- 通用像素按鈕 ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-pix);
+  font-size: 12px;
+  text-decoration: none;
+  padding: 16px 22px;
+  border: 3px solid #000;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform .05s steps(2), box-shadow .05s steps(2);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.btn:active { transform: translate(6px, 6px); box-shadow: 0 0 0 #000; }
+
+.btn--primary {
+  background: var(--accent);
+  color: #1a1a1a;
+}
+.btn--primary:hover { background: #ffe066; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: max(819px, 100vh);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  border-bottom: 4px solid var(--line);
+}
+.hero__inner { position: relative; z-index: 2; max-width: 720px; }
+
+/* ---------- 左右像素裝飾 ---------- */
+.hero__deco {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(80px, 18vw, 220px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero__deco--left  { left: 0; }
+.hero__deco--right { right: 0; }
+
+.px {
+  font-family: var(--font-pix);
+  font-size: clamp(14px, 2.4vw, 28px);
+  opacity: .55;
+  text-shadow: 3px 3px 0 #000;
+  animation: floaty 3.2s ease-in-out infinite;
+}
+/* 每顆錯開時間 + 方向,避免同步 */
+.hero__deco--left  .px:nth-child(1) { animation-delay: 0s;   animation-name: floaty; }
+.hero__deco--left  .px:nth-child(2) { animation-delay: .5s;  animation-name: floaty-rev; }
+.hero__deco--left  .px:nth-child(3) { animation-delay: 1s;   animation-name: floaty; }
+.hero__deco--left  .px:nth-child(4) { animation-delay: 1.5s; animation-name: floaty-rev; }
+.hero__deco--right .px:nth-child(1) { animation-delay: .8s;  animation-name: floaty-rev; }
+.hero__deco--right .px:nth-child(2) { animation-delay: .2s;  animation-name: floaty; }
+.hero__deco--right .px:nth-child(3) { animation-delay: 1.3s; animation-name: floaty-rev; }
+.hero__deco--right .px:nth-child(4) { animation-delay: .6s;  animation-name: floaty; }
+
+.px--react   { color: var(--react); }
+.px--vue     { color: var(--vue); }
+.px--angular { color: #ff3b5c; }   /* 調亮的紅,增加與深色背景對比 */
+.px--pink    { color: #ff9ec8; }   /* 調亮的粉紅 */
+.px--accent  { color: var(--accent); }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-18px) rotate(6deg); }
+}
+@keyframes floaty-rev {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(16px) rotate(-6deg); }
+}
+
+/* 尊重使用者的減少動態偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .px { animation: none; }
+}
+
+.hero__tag {
+  font-family: var(--font-pix);
+  font-size: 14px;
+  color: var(--pink);
+  letter-spacing: 2px;
+  margin: 0 0 26px;
+  animation: blink 1.2s steps(2, end) infinite;
+}
+@keyframes blink { 50% { opacity: .25; } }
+.hero__tag .tri { position: relative; top: -2px; }   /* ▲ 往上 2px */
+
+.hero__title {
+  font-family: var(--font-pix);
+  font-size: clamp(28px, 7vw, 56px);
+  line-height: 1.35;
+  margin: 0;
+  color: var(--ink);
+  text-shadow:
+    4px 4px 0 var(--angular),
+    8px 8px 0 var(--react);
+}
+
+.hero__sub {
+  font-family: var(--font-pix);
+  font-size: 18px;
+  color: var(--accent);
+  margin: 34px 0 18px;
+  /* 三欄格線讓中間的 Vue 對齊容器中心(即 START 的中心) */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.hero__sub-l { text-align: right; }
+.hero__sub-r { text-align: left; }
+.hero__sub-c { text-align: center; }
+
+.hero__desc {
+  font-size: 26px;
+  color: var(--ink-dim);
+  margin: 0 0 36px;
+}
+
+/* =========================================================
+   SECTION 共用
+   ========================================================= */
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+.section--quiz { border-top: 4px dashed var(--line); }
+
+.section__title {
+  font-family: var(--font-pix);
+  font-size: clamp(16px, 3vw, 22px);
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+.section__lead {
+  font-size: 26px;
+  color: var(--ink-dim);
+  margin: 0 0 46px;
+}
+.section__scrollhint {
+  text-align: center;
+  font-family: var(--font-pix);
+  font-size: 18px;
+  color: var(--pink);
+  margin-top: 54px;
+  animation: bob 1.4s ease-in-out infinite;
+}
+@keyframes bob { 50% { transform: translateY(8px); } }
+
+/* =========================================================
+   比較卡片
+   ========================================================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;           /* 直向排列,方便把連結推到底部 */
+  background: var(--bg-2);
+  border: 3px solid #000;
+  box-shadow: var(--shadow);
+  padding: 26px 22px 24px;
+  --hue: var(--accent);
+  border-top: 8px solid var(--hue);
+}
+.card--react   { --hue: var(--react); }
+.card--vue     { --hue: var(--vue); }
+.card--angular { --hue: var(--angular); }
+
+.card:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #000; }
+
+.card__badge {
+  position: absolute;
+  top: -3px; right: -3px;
+  background: var(--hue);
+  color: #101010;
+  font-family: var(--font-pix);
+  font-size: 12px;
+  padding: 7px 9px;
+  border: 3px solid #000;
+}
+
+.card__name {
+  font-family: var(--font-pix);
+  font-size: 20px;
+  color: var(--hue);
+  margin: 6px 0 4px;
+}
+.card__by {
+  font-size: 24px;
+  color: var(--ink-dim);
+  margin: 0 0 18px;
+}
+
+.card__stats {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  border-top: 2px dashed var(--line);
+}
+.card__stats li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 2px dashed var(--line);
+  font-size: 22px;
+}
+.card__stats span { color: var(--ink-dim); }
+.card__stats b { color: var(--ink); font-weight: normal; font-size: 20px; }
+
+.card__desc {
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+.card__links {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  margin-top: auto;                   /* 推到卡片底部,三張卡連結列對齊 */
+}
+.card__links a {
+  flex: 1 1 0;                        /* 兩個連結等寬,不受文字長度影響 */
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 46px;                       /* 兩個連結外框等高 */
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
+  color: #101010;
+  background: var(--hue);
+  padding: 0 14px;
+  border: 3px solid #000;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .05s steps(2), background .05s steps(2);
+}
+.card__links a:last-child { font-size: 22px; }   /* GitHub 連結 */
+.card__links .arr { font-size: 22px; position: relative; top: -1.5px; }   /* 連結旁的箭頭 ↗,往上 1.5px */
+.card__links a:hover { border-color: var(--accent); }   /* hover 換外框顏色 */
+.card__links a:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
+
+/* =========================================================
+   主題比較區塊
+   ========================================================= */
+.topics {
+  display: grid;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.topic {
+  background: var(--bg-2);
+  border: 3px solid #000;
+  box-shadow: var(--shadow);
+  padding: 26px 26px 28px;
+}
+.topic__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-pix);
+  font-size: clamp(13px, 2.4vw, 17px);
+  color: var(--ink);
+  margin: 0 0 22px;
+  padding-bottom: 18px;
+  border-bottom: 2px dashed var(--line);
+}
+.topic__no {
+  background: var(--accent);
+  color: #101010;
+  font-size: 12px;
+  padding: 7px 9px;
+  border: 3px solid #000;
+}
+/* span 後面的中文標題:真正的 20px(不套用 cjk-pixel 的 size-adjust) */
+.topic__label {
+  font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+  font-size: 20px;
+}
+
+/* 框架分區(左色標 + 內文) */
+.fw {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  --hue: var(--accent);
+}
+.fw + .fw { border-top: 2px dashed var(--line); }
+.fw--react   { --hue: var(--react); }
+.fw--vue     { --hue: var(--vue); }
+.fw--angular { --hue: var(--angular); }
+
+.fw__tag {
+  align-self: start;
+  font-family: var(--font-pix);
+  font-size: 12px;
+  text-align: center;
+  color: #101010;
+  background: var(--hue);
+  border: 3px solid #000;
+  box-shadow: var(--shadow-sm);
+  padding: 12px 6px;
+}
+.fw__body { min-width: 0; }
+/* fw__lead 基礎樣式(topics 與情境區共用) */
+.fw__lead {
+  font-family: var(--font-pix);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--hue);
+  margin: 2px 0 10px;
+}
+/* 只有 topics 的 lead 做成小標題:框架色底線 + 加大間距,與內文區隔 */
+.fw__body .fw__lead {
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 2px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--hue);
+}
+.fw__body p { margin: 0; font-size: 20px; color: var(--ink); }
+/* 調查數據的百分比:放大並上移 0.5px */
+.fw__body .fw__data b { font-size: 22px; position: relative; top: -0.5px; }
+
+.fw code {
+  font-family: var(--font-body);
+  font-size: 22px;
+  background: var(--bg);
+  color: var(--accent);
+  border: 2px solid var(--line);
+  padding: 0 6px;
+}
+
+/* 條列式事實(工作機會) */
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.facts li {
+  position: relative;
+  padding: 12px 0 12px 30px;
+  font-size: 20px;
+  border-bottom: 2px dashed var(--line);
+}
+.facts li:last-child { border-bottom: 0; }
+.facts li::before {
+  content: "▸";
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+}
+.facts b { font-weight: normal; }
+/* 工作機會:框架名稱放大 2px,顏色與內文相同 */
+.facts .c-react,
+.facts .c-vue,
+.facts .c-angular { font-size: 24px; color: var(--ink); }
+.c-react   { color: var(--react); }
+.c-vue     { color: var(--vue); }
+.c-angular { color: var(--angular); }
+
+/* 情境(新手先學哪個) */
+.scenario {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+}
+.scenario + .scenario { border-top: 2px dashed var(--line); }
+.scenario__no {
+  align-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-pix);
+  font-size: 11px;               /* 數字維持 11px 像素字 */
+  line-height: 1.5;
+  text-align: center;
+  color: #101010;
+  background: var(--pink);
+  border: 3px solid #000;
+  box-shadow: var(--shadow-sm);
+  padding: 12px 6px;
+}
+/* 「情境」中文:真正的 20px(不套用 cjk-pixel 的 size-adjust) */
+.scenario__label {
+  font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+  font-size: 16px;
+}
+.scenario__body p:not(.fw__lead) { margin: 0; font-size: 20px; color: var(--ink); }
+.scenario__body .fw__lead { color: var(--pink); }
+.scenario__body .fw__lead--sm { font-size: 20px; }
+.scenario__body .fw__lead .tech { font-size: 16px; position: relative; top: 1px; }   /* JavaScript / React / Vue,下移 1px */
+
+/* =========================================================
+   測驗
+   ========================================================= */
+.quiz {
+  display: grid;
+  gap: 26px;
+}
+
+/* 進度 */
+.quiz__progress {
+  font-family: var(--font-pix);
+  font-size: 16px;
+  color: var(--accent);
+  text-align: center;
+  margin: 0;
+}
+
+/* 逐題顯示:預設隱藏,只顯示 is-active */
+.q {
+  display: none;
+  background: var(--bg-2);
+  border: 3px solid #000;
+  box-shadow: var(--shadow);
+  padding: 22px 24px 24px;
+  margin: 0;
+}
+.q.is-active { display: block; animation: qin .18s steps(3, end); }
+@keyframes qin {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.q__title {
+  font-family: var(--font-pix);
+  font-size: 22px;
+  line-height: 1.7;
+  color: var(--ink);
+  padding: 0;
+  margin-bottom: 8px;
+}
+.q__no {
+  display: inline-block;
+  background: var(--accent);
+  color: #101010;
+  font-size: 13px;                 /* 題號徽章維持原大小 */
+  padding: 4px 7px;
+  margin-right: 8px;
+  border: 2px solid #000;
+}
+.q__title .q__ts { font-size: 13px; }   /* TypeScript 維持原大小 */
+.q__title .q__q {                        /* 問號:往下微調對齊中文 */
+  display: inline-block;
+  transform: translateY(4px);
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  font-size: 23px;
+  transition: background .05s steps(2), border-color .05s steps(2);
+}
+.opt:hover { background: #262247; border-color: var(--accent); }
+.opt .en { font-size: 27px; position: relative; top: -0.5px; }   /* 選項中的英文字,微調對齊中文 */
+.opt span { position: relative; top: 3px; }   /* 文字往下對齊 radio */
+
+.opt input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  background: var(--bg);
+  border: 3px solid var(--ink-dim);
+  cursor: pointer;
+}
+.opt input[type="radio"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 3px var(--bg);
+}
+
+.quiz__submit {
+  justify-self: center;
+  margin-top: 12px;
+}
+
+/* 導覽列(上一題 / 下一題 / 送出) */
+.quiz__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+/* 上一題:深色背景 */
+.quiz__prev {
+  background: var(--bg-2);
+  color: var(--ink);
+}
+.quiz__prev:hover { background: #262247; }
+
+/* 上一題 / 下一題 字體大小與寬度一致 */
+.quiz__prev,
+.quiz__next {
+  font-size: 20px;
+  min-width: 150px;
+  text-align: center;
+}
+
+/* 未作答時,箭頭 / 送出停用 */
+.btn[disabled] {
+  opacity: .4;
+  cursor: not-allowed;
+}
+.btn[disabled]:active { transform: none; box-shadow: var(--shadow); }
+
+/* 結果佔位 */
+.result {
+  margin-top: 40px;
+  text-align: center;
+  background: var(--bg-2);
+  border: 3px solid #000;
+  border-top: 8px solid var(--pink);
+  box-shadow: var(--shadow);
+  padding: 34px 24px;
+}
+.result__title {
+  font-family: var(--font-pix);
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin: 0 0 16px;
+}
+.result__name {
+  display: inline-block;
+  font-family: var(--font-pix);
+  font-size: 26px;
+  color: var(--accent);
+  margin: 0 0 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.result__name:hover { opacity: .8; }
+/* 換成框架代表色(兩個 class 提高特異度,才不會被上面的 accent 蓋掉) */
+.result__name.c-react   { color: var(--react); }
+.result__name.c-vue     { color: var(--vue); }
+.result__name.c-angular { color: var(--angular); }
+.result__desc {
+  font-size: 24px;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  text-align: center;
+  padding: 46px 20px 60px;
+  border-top: 4px solid var(--line);
+  color: var(--ink-dim);
+}
+.footer p {
+  font-family: var(--font-pix);
+  font-size: 11px;
+  margin: 0 0 12px;
+}
+.footer__small {
+  font-family: var(--font-body) !important;
+  font-size: 20px !important;
+}
+/* 頁尾裝飾 ◆:上移 1px */
+.footer__dia { position: relative; top: -1px; display: inline-block; }
+
+/* =========================================================
+   RWD
+   ========================================================= */
+@media (max-width: 1024px) {
+  /* 卡片連結:1024px 以下改為上下排列,並維持原本的長寬高 */
+  .card__links { flex-direction: column; align-items: center; }
+  .card__links a { flex: 0 0 auto; width: 100%; }   /* 不伸縮,維持 46px 高 */
+}
+
+@media (max-width: 768px) {
+  .cards { grid-template-columns: 1fr; }
+  /* 卡片單欄、寬度足夠,連結恢復左右排列 */
+  .card__links { flex-direction: row; align-items: stretch; }
+  .card__links a { flex: 1 1 0; width: auto; }
+  .section { padding: 20px; }               /* 上下留白縮小 */
+  .opt { font-size: 21px; }                 /* 選項字體小 2px */
+  .section__lead { font-size: 20px; }
+  .fw, .scenario { grid-template-columns: 1fr; gap: 10px; }
+  .fw__tag, .scenario__no { justify-self: start; padding: 8px 14px; }
+  body { font-size: 22px; }
+  .hero__title { text-shadow: 3px 3px 0 var(--angular), 6px 6px 0 var(--react); }
+  /* hero 占滿整頁但最高 860px、上下 padding 80px(左右漂浮裝飾保留,375px 才隱藏) */
+  .hero { min-height: min(100vh, 860px); padding-top: 80px; padding-bottom: 80px; }
+}
+
+@media (max-width: 375px) {
+  /* 375px 以下:隱藏左右漂浮裝飾動畫 */
+  .hero__deco { display: none; }
+
+  /* hero__sub:整體置中、不換行、字體小 2px */
+  .hero__sub { display: block; white-space: nowrap; font-size: 16px; }
+  .hero__desc { font-size: 24px; }              /* 字體小 2px */
+  .section__lead { margin-bottom: 20px; }
+
+  /* scenario:隱藏「→ 推薦 X」 */
+  .scenario__rec { display: none; }
+
+  /* 測驗表單內文字都小 2px */
+  .quiz__progress { font-size: 14px; }
+  .q__title { font-size: 20px; white-space: nowrap; }
+  .q__no,
+  .q__title .q__ts { font-size: 11px; }
+  .opt { font-size: 19px; }
+  .quiz__prev,
+  .quiz__next { font-size: 18px; }
+
+  /* 結果區文字都小 2px */
+  .result__title { font-size: 14px; }
+  .result__name { font-size: 24px; }
+  .result__desc { font-size: 22px; }
+}
