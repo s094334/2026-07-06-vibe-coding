@@ -496,8 +496,8 @@ a { color: var(--accent); }
 }
 .scenario__body p:not(.fw__lead) { margin: 0; font-size: 20px; color: var(--ink); }
 .scenario__body .fw__lead { color: var(--pink); }
-.scenario__body .fw__lead--sm { font-size: 16px; }
-.scenario__body .fw__lead .tech { font-size: 12px; }   /* JavaScript / React / Vue */
+.scenario__body .fw__lead--sm { font-size: 20px; }
+.scenario__body .fw__lead .tech { font-size: 16px; position: relative; top: 1px; }   /* JavaScript / React / Vue,下移 1px */
 
 /* =========================================================
    測驗
