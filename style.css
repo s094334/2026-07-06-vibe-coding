@@ -702,12 +702,14 @@ a { color: var(--accent); }
   .fw__tag, .scenario__no { justify-self: start; padding: 8px 14px; }
   body { font-size: 22px; }
   .hero__title { text-shadow: 3px 3px 0 var(--angular), 6px 6px 0 var(--react); }
-  /* hero 占滿整頁但最高 860px、上下 padding 80px、拿掉左右漂浮裝飾動畫 */
+  /* hero 占滿整頁但最高 860px、上下 padding 80px(左右漂浮裝飾保留,375px 才隱藏) */
   .hero { min-height: min(100vh, 860px); padding-top: 80px; padding-bottom: 80px; }
-  .hero__deco { display: none; }
 }
 
 @media (max-width: 375px) {
+  /* 375px 以下:隱藏左右漂浮裝飾動畫 */
+  .hero__deco { display: none; }
+
   /* hero__sub:整體置中、不換行、字體小 2px */
   .hero__sub { display: block; white-space: nowrap; font-size: 16px; }
   .hero__desc { font-size: 24px; }              /* 字體小 2px */
