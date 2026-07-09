@@ -78,6 +78,9 @@ body {
 
 a { color: var(--accent); }
 
+/* 內文段落中的英文字放大 */
+.en { font-size: 24px; }
+
 /* ---------- 通用像素按鈕 ---------- */
 .btn {
   display: inline-block;
@@ -150,8 +153,8 @@ a { color: var(--accent); }
 
 .px--react   { color: var(--react); }
 .px--vue     { color: var(--vue); }
-.px--angular { color: var(--angular); }
-.px--pink    { color: var(--pink); }
+.px--angular { color: #ff3b5c; }   /* 調亮的紅,增加與深色背景對比 */
+.px--pink    { color: #ff9ec8; }   /* 調亮的粉紅 */
 .px--accent  { color: var(--accent); }
 
 @keyframes floaty {
@@ -177,6 +180,7 @@ a { color: var(--accent); }
   animation: blink 1.2s steps(2, end) infinite;
 }
 @keyframes blink { 50% { opacity: .25; } }
+.hero__tag .tri { position: relative; top: -2px; }   /* ▲ 往上 2px */
 
 .hero__title {
   font-family: var(--font-pix);
@@ -252,6 +256,8 @@ a { color: var(--accent); }
 
 .card {
   position: relative;
+  display: flex;
+  flex-direction: column;           /* 直向排列,方便把連結推到底部 */
   background: var(--bg-2);
   border: 3px solid #000;
   box-shadow: var(--shadow);
@@ -312,12 +318,13 @@ a { color: var(--accent); }
 
 .card__links {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  margin-top: auto;                   /* 推到卡片底部,三張卡連結列對齊 */
 }
 .card__links a {
+  flex: 1 1 0;                        /* 兩個連結等寬,不受文字長度影響 */
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -548,6 +555,7 @@ a { color: var(--accent); }
   transition: background .05s steps(2), border-color .05s steps(2);
 }
 .opt:hover { background: #262247; border-color: var(--accent); }
+.opt .en { font-size: 27px; position: relative; top: -0.5px; }   /* 選項中的英文字,微調對齊中文 */
 .opt span { position: relative; top: 3px; }   /* 文字往下對齊 radio */
 
 .opt input[type="radio"] {
@@ -659,8 +667,17 @@ a { color: var(--accent); }
 /* =========================================================
    RWD
    ========================================================= */
+@media (max-width: 1024px) {
+  /* 卡片連結:1024px 以下改為上下排列,並維持原本的長寬高 */
+  .card__links { flex-direction: column; align-items: center; }
+  .card__links a { flex: 0 0 auto; width: 100%; }   /* 不伸縮,維持 46px 高 */
+}
+
 @media (max-width: 768px) {
   .cards { grid-template-columns: 1fr; }
+  /* 卡片單欄、寬度足夠,連結恢復左右排列 */
+  .card__links { flex-direction: row; align-items: stretch; }
+  .card__links a { flex: 1 1 0; width: auto; }
   .section { padding: 20px; }               /* 上下留白縮小 */
   .opt { font-size: 21px; }                 /* 選項字體小 2px */
   .section__lead { font-size: 20px; }
