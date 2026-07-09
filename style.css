@@ -678,6 +678,8 @@ a { color: var(--accent); }
   font-family: var(--font-body) !important;
   font-size: 20px !important;
 }
+/* 頁尾裝飾 ◆:上移 1px */
+.footer__dia { position: relative; top: -1px; display: inline-block; }
 
 /* =========================================================
    RWD
