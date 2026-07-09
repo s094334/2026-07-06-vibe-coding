@@ -81,6 +81,9 @@ a { color: var(--accent); }
 /* 內文段落中的英文字放大 */
 .en { font-size: 24px; }
 
+/* 內文中的官方連結:維持內文色,只加底線 */
+.txt-link { color: inherit; text-decoration: underline; }
+
 /* ---------- 通用像素按鈕 ---------- */
 .btn {
   display: inline-block;
@@ -427,6 +430,8 @@ a { color: var(--accent); }
   border-bottom: 3px solid var(--hue);
 }
 .fw__body p { margin: 0; font-size: 20px; color: var(--ink); }
+/* 調查數據的百分比:放大並上移 0.5px */
+.fw__body .fw__data b { font-size: 22px; position: relative; top: -0.5px; }
 
 .fw code {
   font-family: var(--font-body);
@@ -673,6 +678,8 @@ a { color: var(--accent); }
   font-family: var(--font-body) !important;
   font-size: 20px !important;
 }
+/* 頁尾裝飾 ◆:上移 1px */
+.footer__dia { position: relative; top: -1px; display: inline-block; }
 
 /* =========================================================
    RWD
