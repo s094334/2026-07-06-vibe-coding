@@ -81,6 +81,9 @@ a { color: var(--accent); }
 /* 內文段落中的英文字放大 */
 .en { font-size: 24px; }
 
+/* 內文中的官方連結:維持內文色,只加底線 */
+.txt-link { color: inherit; text-decoration: underline; }
+
 /* ---------- 通用像素按鈕 ---------- */
 .btn {
   display: inline-block;
