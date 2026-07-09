@@ -17,9 +17,9 @@ let current = 0;   // 目前在第幾題(從 0 開始)
 
 // 三個框架的結果文字
 const info = {
-  react:   { name: "React",   url: "https://react.dev/",   desc: "彈性高、生態龐大,適合想深入 JS、看重職缺與社群資源的你。" },
-  vue:     { name: "Vue",     url: "https://vuejs.org/",    desc: "最好上手、語法貼近原生,適合想快速做出成果的初學者。" },
-  angular: { name: "Angular", url: "https://angular.dev/",  desc: "全套框架、規範完整,適合大型專案與重視長期維護的團隊。" }
+  react:   { name: "React",   url: "https://react.dev/",   desc: "你想深入 JavaScript,也在意未來職缺。先把「元件」和 Hooks 練熟,做一兩個小作品,再慢慢補上 Router、狀態管理。英文資料最多,卡關幾乎都查得到答案。" },
+  vue:     { name: "Vue",     url: "https://vuejs.org/",    desc: "你想輕鬆上手、快點看到成果。跟著官方中文文件從單檔元件 (SFC) 做一遍,先把小網站跑起來、累積成就感,之後要學 React 也會很快。" },
+  angular: { name: "Angular", url: "https://angular.dev/",  desc: "你習慣照規範走、想一次學完整框架。跟著官方教學按部就班,路由、表單都內建不用自己選。門檻較高、初期慢一點,但學會就能扛大型專案。" }
 };
 
 // ---------- 逐題顯示 ----------
