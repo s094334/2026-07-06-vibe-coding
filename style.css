@@ -680,6 +680,8 @@ a { color: var(--accent); }
 }
 /* 頁尾裝飾 ◆:上移 1px */
 .footer__dia { position: relative; top: -1px; display: inline-block; }
+/* 頁尾連結:與內文(footer__dia)同色,只加底線 */
+.footer a { color: inherit; text-decoration: underline; }
 
 /* =========================================================
    RWD
