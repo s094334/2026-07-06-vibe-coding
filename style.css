@@ -5,7 +5,7 @@
 
 :root {
   --bg:        #14122b;   /* 深夜藍紫 */
-  --bg-2:      #1e1b3a;
+  --bg-2:      #2a2550;   /* 卡片/面板底色,提亮以與背景拉開對比 */
   --ink:       #f4f4f8;   /* 主要文字 */
   --ink-dim:   #a9a4d0;   /* 次要文字 */
   --line:      #3a356b;   /* 邊框 / 分隔 */
@@ -342,6 +342,7 @@ a { color: var(--accent); }
   transition: border-color .05s steps(2), background .05s steps(2);
 }
 .card__links a:last-child { font-size: 22px; }   /* GitHub 連結 */
+.card__links .arr { font-size: 22px; position: relative; top: -1.5px; }   /* 連結旁的箭頭 ↗,往上 1.5px */
 .card__links a:hover { border-color: var(--accent); }   /* hover 換外框顏色 */
 .card__links a:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
 
@@ -409,12 +410,21 @@ a { color: var(--accent); }
   padding: 12px 6px;
 }
 .fw__body { min-width: 0; }
+/* fw__lead 基礎樣式(topics 與情境區共用) */
 .fw__lead {
   font-family: var(--font-pix);
   font-size: 13px;
   line-height: 1.6;
   color: var(--hue);
   margin: 2px 0 10px;
+}
+/* 只有 topics 的 lead 做成小標題:框架色底線 + 加大間距,與內文區隔 */
+.fw__body .fw__lead {
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 2px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--hue);
 }
 .fw__body p { margin: 0; font-size: 20px; color: var(--ink); }
 
@@ -447,10 +457,10 @@ a { color: var(--accent); }
   color: var(--accent);
 }
 .facts b { font-weight: normal; }
-/* 工作機會:框架名稱放大 2px,其他中文不變 */
+/* 工作機會:框架名稱放大 2px,顏色與內文相同 */
 .facts .c-react,
 .facts .c-vue,
-.facts .c-angular { font-size: 24px; }
+.facts .c-angular { font-size: 24px; color: var(--ink); }
 .c-react   { color: var(--react); }
 .c-vue     { color: var(--vue); }
 .c-angular { color: var(--angular); }
